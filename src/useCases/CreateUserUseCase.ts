@@ -1,12 +1,12 @@
 import { User } from '../entities/User'
-import { IUserRepository } from '../repositories/IUserRepository'
+import { IUsersRepository } from '../repositories/IUserRepository'
 import { ICreateUserRequestDTO } from './CreateUserDTO'
 
 export class CreateUserCase {
-  private usersRepository: IUserRepository
+  private usersRepository: IUsersRepository
 
   constructor (
-    usersRepository: IUserRepository
+    usersRepository: IUsersRepository
   ) {
     this.usersRepository = usersRepository
   }
