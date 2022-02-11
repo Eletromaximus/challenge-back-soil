@@ -24,4 +24,18 @@ export class CreateUserController {
       })
     }
   }
+
+  async login (req: Request, res: Response): Promise<Response> {
+    const user = req.body
+
+    try {
+      const loginUser = await this.createUserCase.login(user)
+
+      return res.status(201).send(loginUser)
+    } catch (err: any) {
+      return res.status(400).json({
+        message: err.message || 'Unexpected error'
+      })
+    }
+  }
 }

@@ -8,6 +8,10 @@ router.post('/users', (request, response) => {
   createUserController.handle(request, response)
 })
 
+router.post('/login', (request, response) => {
+  createUserController.login(request, response)
+})
+
 router.get('/meals', (request, response) => {
   createMealController.handle(request, response)
 })

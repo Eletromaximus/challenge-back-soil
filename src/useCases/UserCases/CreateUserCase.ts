@@ -1,6 +1,6 @@
 import { User } from '../../entities/User'
 import { IUsersRepository } from '../../repositories/IUserRepository'
-import { ICreateUserRequestDTO } from './CreateUserDTO'
+import { ICreateUserRequestDTO, ILoginUserDTO } from './CreateUserDTO'
 
 export class CreateUserCase {
   constructor (
@@ -19,5 +19,15 @@ export class CreateUserCase {
     const user = new User({ name, email, password })
 
     await this.usersRepository.save(user)
+  }
+
+  async login (user: ICreateUserRequestDTO): Promise<ILoginUserDTO> {
+    const userLogin = await this.usersRepository.login(user)
+
+    if (!userLogin) {
+      throw new Error('Login Error')
+    }
+
+    return userLogin
   }
 }
