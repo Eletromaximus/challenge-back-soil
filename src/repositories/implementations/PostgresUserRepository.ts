@@ -6,30 +6,28 @@ const userDb = knex('users')
 
 export class PostgresUsersRepository implements IUsersRepository {
   async findByEmail (email: string): Promise<User> {
-    console.log('chegou nos repositorios')
     const user = await userDb
       .select()
       .from('users')
       .where('email', email)
       .then(() => {
-        console.log('data')
+        console.log('busca bem sucedida')
       })
       .catch((err: any) => {
-        console.log(err, 'aqui')
+        console.log(err)
       })
 
     return user
   }
 
   async save (user: User): Promise<void> {
-    console.log('chegou no save')
     await userDb
       .insert(user)
       .then(() => {
-        console.log('sucesso ao inserir')
+        console.log('sucesso ao inserir User')
       })
-      .catch(() => {
-        console.log('falha ao inserir')
+      .catch((error: any) => {
+        console.log(error, 'falha ao inserir User')
       })
   }
 }

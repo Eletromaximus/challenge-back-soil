@@ -19,7 +19,6 @@ export class CreateUserController {
 
       return res.status(201).send()
     } catch (err: any) {
-      console.log('ainda entra')
       return res.status(400).json({
         message: err.message || 'Unexpected error'
       })

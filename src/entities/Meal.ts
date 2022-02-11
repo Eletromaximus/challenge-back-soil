@@ -1,11 +1,7 @@
 
-interface IType {
-  name: string,
-  grams: number
-}
 export class Meal {
+  public email!: string
   public name!: string
-  public type!: IType
   public data!: Date
 
   constructor (props: Meal) {
