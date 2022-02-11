@@ -10,6 +10,12 @@ export class CreateTypeMealCase {
   }
 
   async execute ({ type, grams, id }: ICreateTypeMealDTO) {
+    const listType = type === 'carboidratos' || 'vegetais' || 'proteina'
+
+    if (!listType) {
+      throw new Error('This type is Invalid')
+    }
+
     const find = await this.useTypeMeal.findType(id)
 
     if (find) {

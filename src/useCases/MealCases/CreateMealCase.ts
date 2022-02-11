@@ -10,6 +10,12 @@ export class CreateMealCase {
   }
 
   async execute ({ data, email, name }:ICreateMealDTO) {
+    const listMeal = name === 'café da manha' || 'almoço' || 'café da tarde' || 'janta' || 'ceia'
+
+    if (!listMeal) {
+      throw new Error('Name Invalid')
+    }
+
     const sameDate = await this.useMeal.findMeal({
       data,
       email,
