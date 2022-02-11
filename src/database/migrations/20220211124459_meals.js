@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.text('name').notNullable()
     table.text('email').notNullable()
     table.foreign('email').references('email').inTable('users')
-    table.timestamp('data').primary()
+    table.text('data').primary()
   })
 }
 

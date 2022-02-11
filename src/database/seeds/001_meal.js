@@ -4,11 +4,15 @@
  */
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('meals').del()
     .then(function () {
       // Inserts seed entries
-      return knex('users').insert([
-        { email: 'imperador', name: 'rowValue1', password: 'çliajhsdifgj' }
+      return knex('meals').insert([
+        {
+          name: 'giselda',
+          email: 'rowValue1',
+          data: '01 Jan 1970 00:00:00 GMT'
+        }
       ])
     })
 }

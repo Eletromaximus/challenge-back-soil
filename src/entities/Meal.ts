@@ -2,7 +2,7 @@
 export class Meal {
   public email!: string
   public name!: string
-  public data!: Date
+  public data!: string
 
   constructor (props: Meal) {
     Object.assign(this, props)

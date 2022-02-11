@@ -18,7 +18,7 @@ export class PostgresMealRepository implements IMealRepository {
     return user
   }
 
-  async findDate (data: Date): Promise<Meal> {
+  async findDate (data: string): Promise<Meal> {
     const findByDate = await userDb
       .select()
       .from('meals')
