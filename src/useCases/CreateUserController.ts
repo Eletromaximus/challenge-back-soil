@@ -1,27 +1,25 @@
 import { Request, Response } from 'express'
-import { CreateUserCase } from './CreateUserUseCase'
+import { CreateUserCase } from './CreateUserCase'
 
 export class CreateUserController {
-  private createUseCase: CreateUserCase
-
   constructor (
-    createUseCase: CreateUserCase
+    private createUserCase: CreateUserCase
   ) {
-    this.createUseCase = createUseCase
+    this.createUserCase = createUserCase
   }
 
   async handle (req: Request, res: Response): Promise<Response> {
     const { name, email, password } = req.body
-
     try {
-      await this.createUseCase.execute({
+      await this.createUserCase.execute({
         name,
         email,
         password
       })
 
-      return res.status(201).send({ message: 'ok' })
+      return res.status(201).send()
     } catch (err: any) {
+      console.log('ainda entra')
       return res.status(400).json({
         message: err.message || 'Unexpected error'
       })

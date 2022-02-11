@@ -4,8 +4,6 @@ interface IType {
   grams: number
 }
 export class Meal {
-  public id!: string
-
   public name!: string
   public type!: IType
   public data!: Date

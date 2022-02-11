@@ -1,18 +1,35 @@
 import { IUsersRepository } from '../IUserRepository'
 import { User } from '../../entities/User'
 
+const knex = require('../../database')
+const userDb = knex('users')
+
 export class PostgresUsersRepository implements IUsersRepository {
-  private users: User[] = [];
-
   async findByEmail (email: string): Promise<User> {
-    const user = this.users.find(user => user.email === email)
+    console.log('chegou nos repositorios')
+    const user = await userDb
+      .select()
+      .from('users')
+      .where('email', email)
+      .then(() => {
+        console.log('data')
+      })
+      .catch((err: any) => {
+        console.log(err, 'aqui')
+      })
 
-    if (user) {
-      return user
-    }
+    return user
   }
 
   async save (user: User): Promise<void> {
-    this.users.push(user)
+    console.log('chegou no save')
+    await userDb
+      .insert(user)
+      .then(() => {
+        console.log('sucesso ao inserir')
+      })
+      .catch(() => {
+        console.log('falha ao inserir')
+      })
   }
 }
