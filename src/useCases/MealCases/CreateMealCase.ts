@@ -10,7 +10,11 @@ export class CreateMealCase {
   }
 
   async execute ({ data, email, name }:ICreateMealDTO) {
-    const sameDate = await this.useMeal.findDate(data)
+    const sameDate = await this.useMeal.findMeal({
+      data,
+      email,
+      name
+    })
 
     if (sameDate) {
       throw new Error('Meal in this date already exist')
@@ -20,13 +24,13 @@ export class CreateMealCase {
     await this.useMeal.addMeal(meal)
   }
 
-  async delete ({ data, email, name }: ICreateMealDTO) {
-    const sameDate = await this.useMeal.findDate(data)
+  async delete (id: string) {
+    const sameDate = await this.useMeal.findId(id)
 
     if (!sameDate) {
       throw new Error('Meal is not exist')
     }
 
-    await this.useMeal.delMeal({ data, email, name })
+    await this.useMeal.delMeal(id)
   }
 }

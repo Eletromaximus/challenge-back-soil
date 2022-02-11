@@ -2,27 +2,27 @@ import { IMealRepository } from '../IMealRepository'
 import { Meal } from '../../entities/Meal'
 
 const knex = require('../../database')
-const userDb = knex('meals')
+const mealDb = knex('meals')
 
 export class PostgresMealRepository implements IMealRepository {
   async addMeal (meal: Meal): Promise<void> {
-    const user = await userDb
+    const result = await mealDb
       .insert(meal)
       .then(() => {
         console.log('sucesso ao inserir Meal')
       })
-      .catch(() => {
-        console.log('falha ao inserir Meal')
+      .catch((error: any) => {
+        console.log('falha ao inserir Meal', error)
       })
 
-    return user
+    return result
   }
 
-  async findDate (data: string): Promise<Meal> {
-    const findByDate = await userDb
+  async findId (id: string): Promise<Meal> {
+    const findByDate = await mealDb
       .select()
       .from('meals')
-      .where('data', data)
+      .where('id', id)
       .then(() => {
         console.log('busca bem sucedida de Meal')
       })
@@ -33,12 +33,9 @@ export class PostgresMealRepository implements IMealRepository {
     return findByDate
   }
 
-  async delMeal (meal: Meal): Promise<void> {
-    await userDb
-      .where({
-        data: `${meal.data}`,
-        email: `${meal.email}`
-      })
+  async delMeal (id: string): Promise<void> {
+    await mealDb
+      .where(id)
       .del()
       .then(() => {
         console.log('apagado com sucesso')
@@ -46,5 +43,26 @@ export class PostgresMealRepository implements IMealRepository {
       .catch((err: any) => {
         console.log(err)
       })
+  }
+
+  async findMeal ({ name, email, data }: Omit<Meal, 'id'>): Promise<Meal> {
+    const find = await mealDb
+      .select()
+      .from('meals')
+      .where({
+        name: `${name}`,
+        email: `${email}`,
+        data: `${data}`
+      })
+      .then((data: any) => {
+        console.log('Meal encontrada')
+        return data[0]
+      })
+      .catch((err: any) => {
+        console.log(err)
+        return undefined
+      })
+
+    return find
   }
 }

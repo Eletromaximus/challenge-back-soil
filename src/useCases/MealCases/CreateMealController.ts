@@ -23,10 +23,10 @@ export class CreateMealController {
   }
 
   async delete (req: Request, res: Response) {
-    const { email, data, name } = req.body
+    const { id } = req.body
 
     try {
-      this.createMealCase.delete({ email, data, name })
+      this.createMealCase.delete(id)
 
       return res.status(201).send()
     } catch (err: any) {

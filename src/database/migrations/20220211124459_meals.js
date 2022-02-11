@@ -6,8 +6,9 @@ exports.up = function (knex) {
   return knex.schema.createTable('meals', (table) => {
     table.text('name').notNullable()
     table.text('email').notNullable()
+    table.text('id').notNullable().primary().unique()
     table.foreign('email').references('email').inTable('users')
-    table.text('data').primary()
+    table.text('data')
   })
 }
 
