@@ -32,4 +32,19 @@ export class PostgresMealRepository implements IMealRepository {
 
     return findByDate
   }
+
+  async delMeal (meal: Meal): Promise<void> {
+    await userDb
+      .where({
+        data: `${meal.data}`,
+        email: `${meal.email}`
+      })
+      .del()
+      .then(() => {
+        console.log('apagado com sucesso')
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+  }
 }

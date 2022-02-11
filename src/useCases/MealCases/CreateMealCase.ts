@@ -19,4 +19,14 @@ export class CreateMealCase {
 
     await this.useMeal.addMeal(meal)
   }
+
+  async delete ({ data, email, name }: ICreateMealDTO) {
+    const sameDate = await this.useMeal.findDate(data)
+
+    if (!sameDate) {
+      throw new Error('Meal is not exist')
+    }
+
+    await this.useMeal.delMeal({ data, email, name })
+  }
 }
