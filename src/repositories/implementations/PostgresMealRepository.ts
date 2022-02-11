@@ -65,4 +65,22 @@ export class PostgresMealRepository implements IMealRepository {
 
     return find
   }
+
+  async listMeal (advance: number = 0, column: string = 'email', direction: string = 'ASC'): Promise<Meal[]> {
+    const list = await mealDb
+      .searchMeal()
+      .from('meals')
+      .limit(5)
+      .orderBy(column, direction)
+      .offset(Math.floor(advance))
+      .then(() => {
+        console.log('Lista preenchida')
+      })
+      .catch((err: any) => {
+        console.log(err)
+        return undefined
+      })
+
+    return list
+  }
 }

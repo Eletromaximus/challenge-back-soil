@@ -35,4 +35,22 @@ export class CreateMealController {
       })
     }
   }
+
+  async listOfMeals (req: Request, res: Response) {
+    const { advance, column, direction } = req.body
+
+    try {
+      const listMeals = this.createMealCase.listMeals(
+        advance,
+        column,
+        direction
+      )
+
+      return res.status(201).send(listMeals)
+    } catch (err: any) {
+      return res.status(400).json({
+        message: err.message || 'Unexpected error'
+      })
+    }
+  }
 }

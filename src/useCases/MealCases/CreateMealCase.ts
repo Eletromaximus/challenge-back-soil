@@ -39,4 +39,21 @@ export class CreateMealCase {
 
     await this.useMeal.delMeal(id)
   }
+
+  async listMeals (advance: number = 0, column?: string, direction?: string) {
+    const verifyAdvance = advance >= 0
+    const verifyDirection = direction === 'DESC' || 'ASC'
+
+    if (!verifyAdvance || !verifyDirection) {
+      throw new Error('Bad Request')
+    }
+
+    const list = await this.useMeal.listMeal(advance, column, direction)
+
+    if (!list) {
+      throw new Error('List Fail')
+    }
+
+    return list
+  }
 }
