@@ -37,10 +37,11 @@ export class CreateMealController {
   }
 
   async listOfMeals (req: Request, res: Response) {
-    const { advance, column, direction } = req.body
+    const { email, advance, column, direction } = req.body
 
     try {
       const listMeals = this.createMealCase.listMeals(
+        email,
         advance,
         column,
         direction

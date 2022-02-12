@@ -17,9 +17,9 @@ export class CreateMealCase {
     }
 
     const sameDate = await this.useMeal.findMeal(
-      mealData.data,
+      mealData.name,
       mealData.email,
-      mealData.name
+      mealData.data
     )
 
     if (sameDate) {
@@ -40,15 +40,20 @@ export class CreateMealCase {
     await this.useMeal.delMeal(id)
   }
 
-  async listMeals (advance: number = 0, column?: string, direction?: string) {
+  async listMeals (
+    email: string,
+    advance: number = 0,
+    column?: string,
+    direction?: string
+  ) {
     const verifyAdvance = advance >= 0
     const verifyDirection = direction === 'DESC' || 'ASC'
 
-    if (!verifyAdvance || !verifyDirection) {
+    if (!verifyAdvance || !verifyDirection || !email) {
       throw new Error('Bad Request')
     }
 
-    const list = await this.useMeal.listMeal(advance, column, direction)
+    const list = await this.useMeal.listMeal(email, advance, column, direction)
 
     if (!list) {
       throw new Error('List Fail')

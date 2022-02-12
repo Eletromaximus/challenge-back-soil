@@ -45,7 +45,8 @@ export class PostgresMealRepository implements IMealRepository {
       })
   }
 
-  async findMeal (name: string, email: string, data?: string): Promise<Meal> {
+  async findMeal (name: string, email: string, data: string): Promise<Meal> {
+    console.log(name, email, data)
     const find = await mealDb
       .select()
       .from('meals')
@@ -67,10 +68,17 @@ export class PostgresMealRepository implements IMealRepository {
     return find
   }
 
-  async listMeal (advance: number = 0, column: string = 'email', direction: string = 'ASC'): Promise<Meal[]> {
+  async listMeal (
+    email: string,
+    advance: number = 0,
+    column: string = 'data',
+    direction: string = 'ASC'
+  ): Promise<Meal[]> {
+    console.log(email)
     const list = await mealDb
       .select()
       .from('meals')
+      .where('email', email)
       .limit(5)
       .orderBy(column, direction)
       .offset(Math.floor(advance))
