@@ -16,6 +16,10 @@ router.get('/meals', (request, response) => {
   createMealController.handle(request, response)
 })
 
+router.get('/listmeals', (request, response) => {
+  createMealController.listOfMeals(request, response)
+})
+
 router.delete('/delmeal', (request, response) => {
   createMealController.delete(request, response)
 })

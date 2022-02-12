@@ -41,7 +41,7 @@ export class PostgresUsersRepository implements IUsersRepository {
         password: `${user.password}`
       })
       .then((data: User[]) => {
-        console.log('busca bem sucedida')
+        console.log('busca bem sucedida', data)
         return data[0]
       })
       .catch((err: any) => {

@@ -9,6 +9,12 @@ exports.up = function (knex) {
     table.text('id').notNullable().primary().unique()
     table.foreign('email').references('email').inTable('users')
     table.text('data')
+    table.text('carboidratos')
+    table.text('proteinas')
+    table.text('vegetais')
+    table.float('gramsCarboidratos')
+    table.float('gramsProteinas')
+    table.float('gramsVegetais')
   })
 }
 

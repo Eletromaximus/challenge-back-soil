@@ -45,7 +45,7 @@ export class PostgresMealRepository implements IMealRepository {
       })
   }
 
-  async findMeal ({ name, email, data }: Omit<Meal, 'id'>): Promise<Meal> {
+  async findMeal (name: string, email: string, data?: string): Promise<Meal> {
     const find = await mealDb
       .select()
       .from('meals')
@@ -54,6 +54,7 @@ export class PostgresMealRepository implements IMealRepository {
         email: `${email}`,
         data: `${data}`
       })
+      .orderBy('data')
       .then((data: any) => {
         console.log('Meal encontrada')
         return data[0]
@@ -68,7 +69,7 @@ export class PostgresMealRepository implements IMealRepository {
 
   async listMeal (advance: number = 0, column: string = 'email', direction: string = 'ASC'): Promise<Meal[]> {
     const list = await mealDb
-      .searchMeal()
+      .select()
       .from('meals')
       .limit(5)
       .orderBy(column, direction)
@@ -77,8 +78,7 @@ export class PostgresMealRepository implements IMealRepository {
         console.log('Lista preenchida')
       })
       .catch((err: any) => {
-        console.log(err)
-        return undefined
+        console.log(err, 'é aqui')
       })
 
     return list

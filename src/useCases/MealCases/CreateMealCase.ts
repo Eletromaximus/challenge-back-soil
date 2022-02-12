@@ -9,23 +9,23 @@ export class CreateMealCase {
     this.useMeal = useMeal
   }
 
-  async execute ({ data, email, name }:ICreateMealDTO) {
-    const listMeal = name === 'café da manha' || 'almoço' || 'café da tarde' || 'janta' || 'ceia'
+  async execute (mealData:ICreateMealDTO) {
+    const listMeal = mealData.name === 'café da manha' || 'almoço' || 'café da tarde' || 'janta' || 'ceia'
 
-    if (!listMeal) {
-      throw new Error('Name Invalid')
+    if (!listMeal || !mealData.email || !mealData.data) {
+      throw new Error('Bad Request')
     }
 
-    const sameDate = await this.useMeal.findMeal({
-      data,
-      email,
-      name
-    })
+    const sameDate = await this.useMeal.findMeal(
+      mealData.data,
+      mealData.email,
+      mealData.name
+    )
 
     if (sameDate) {
       throw new Error('Meal in this date already exist')
     }
-    const meal = new Meal({ data, email, name })
+    const meal = new Meal(mealData)
 
     await this.useMeal.addMeal(meal)
   }
