@@ -10,7 +10,7 @@ export class CreateUserCase {
   }
 
   async execute ({ name, email, password }: ICreateUserRequestDTO): Promise<void> {
-    const userAlreadyExist = await this.usersRepository.findByEmail(email)
+    const userAlreadyExist: User | undefined = await this.usersRepository.findByEmail(email)
 
     if (userAlreadyExist) {
       throw new Error('User already exist.')
@@ -18,13 +18,13 @@ export class CreateUserCase {
 
     const user = new User({ name, email, password })
 
-    await this.usersRepository.save(user)
+    return await this.usersRepository.save(user)
   }
 
-  async login (user: ICreateUserRequestDTO): Promise<ICreateUserRequestDTO> {
+  async login (user: ICreateUserRequestDTO): Promise<ICreateUserRequestDTO[]> {
     const userLogin = await this.usersRepository.login(user)
 
-    if (!userLogin) {
+    if (userLogin) {
       throw new Error('Login Error')
     }
 

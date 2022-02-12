@@ -2,52 +2,56 @@ import { IMealRepository } from '../IMealRepository'
 import { Meal } from '../../entities/Meal'
 
 const knex = require('../../database')
-const mealDb = knex('meals')
 
 export class PostgresMealRepository implements IMealRepository {
   async addMeal (meal: Meal): Promise<void> {
-    const result = await mealDb
+    const result = await knex('meals')
       .insert(meal)
       .then(() => {
         console.log('sucesso ao inserir Meal')
+        return 'ok'
       })
       .catch((error: any) => {
         console.log('falha ao inserir Meal', error)
+        return undefined
       })
 
     return result
   }
 
   async findId (id: string): Promise<Meal> {
-    const findByDate = await mealDb
+    const findByDate = await knex('meals')
       .select()
       .from('meals')
       .where('id', id)
-      .then(() => {
+      .then((data: Meal[]) => {
         console.log('busca bem sucedida de Meal')
+        return data[0]
       })
       .catch((err: any) => {
         console.log(err)
+        return undefined
       })
 
     return findByDate
   }
 
   async delMeal (id: string): Promise<void> {
-    await mealDb
+    await knex('meals')
       .where(id)
       .del()
       .then(() => {
         console.log('apagado com sucesso')
+        return undefined
       })
       .catch((err: any) => {
         console.log(err)
+        return undefined
       })
   }
 
   async findMeal (name: string, email: string, data: string): Promise<Meal> {
-    console.log(name, email, data)
-    const find = await mealDb
+    const find = await knex('meals')
       .select()
       .from('meals')
       .where({
@@ -57,7 +61,7 @@ export class PostgresMealRepository implements IMealRepository {
       })
       .orderBy('data')
       .then((data: any) => {
-        console.log('Meal encontrada')
+        console.log('refeição encontrada', data)
         return data[0]
       })
       .catch((err: any) => {
@@ -74,19 +78,20 @@ export class PostgresMealRepository implements IMealRepository {
     column: string = 'data',
     direction: string = 'ASC'
   ): Promise<Meal[]> {
-    console.log(email)
-    const list = await mealDb
+    const list = await knex('meals')
       .select()
       .from('meals')
       .where('email', email)
       .limit(5)
       .orderBy(column, direction)
       .offset(Math.floor(advance))
-      .then(() => {
-        console.log('Lista preenchida')
+      .then((data: Meal[]) => {
+        console.log(data)
+        return data
       })
       .catch((err: any) => {
-        console.log(err, 'é aqui')
+        console.log(err)
+        return undefined
       })
 
     return list

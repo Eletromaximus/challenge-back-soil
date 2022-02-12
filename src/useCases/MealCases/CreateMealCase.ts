@@ -27,17 +27,17 @@ export class CreateMealCase {
     }
     const meal = new Meal(mealData)
 
-    await this.useMeal.addMeal(meal)
+    return await this.useMeal.addMeal(meal)
   }
 
   async delete (id: string) {
     const sameDate = await this.useMeal.findId(id)
 
-    if (!sameDate) {
+    if (sameDate) {
       throw new Error('Meal is not exist')
     }
 
-    await this.useMeal.delMeal(id)
+    return await this.useMeal.delMeal(id)
   }
 
   async listMeals (
@@ -55,7 +55,7 @@ export class CreateMealCase {
 
     const list = await this.useMeal.listMeal(email, advance, column, direction)
 
-    if (!list) {
+    if (list ! === []) {
       throw new Error('List Fail')
     }
 

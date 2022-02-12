@@ -12,9 +12,9 @@ export class CreateMealController {
     const data = req.body
 
     try {
-      await this.createMealCase.execute(data)
+      const result = await this.createMealCase.execute(data)
 
-      return res.status(201).send()
+      return res.status(201).send(result)
     } catch (err: any) {
       return res.status(400).json({
         message: err.message || 'Unexpected error'
@@ -26,7 +26,7 @@ export class CreateMealController {
     const { id } = req.body
 
     try {
-      this.createMealCase.delete(id)
+      await this.createMealCase.delete(id)
 
       return res.status(201).send()
     } catch (err: any) {
@@ -40,12 +40,14 @@ export class CreateMealController {
     const { email, advance, column, direction } = req.body
 
     try {
-      const listMeals = this.createMealCase.listMeals(
+      const listMeals = await this.createMealCase.listMeals(
         email,
         advance,
         column,
         direction
       )
+
+      console.log(listMeals)
 
       return res.status(201).send(listMeals)
     } catch (err: any) {
