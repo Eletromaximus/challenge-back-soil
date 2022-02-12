@@ -25,7 +25,7 @@ export class PostgresMealRepository implements IMealRepository {
       .from('meals')
       .where('id', id)
       .then((data: Meal[]) => {
-        console.log('busca bem sucedida de Meal')
+        console.log('busca bem sucedida de Meal', data)
         return data[0]
       })
       .catch((err: any) => {
@@ -37,17 +37,18 @@ export class PostgresMealRepository implements IMealRepository {
   }
 
   async delMeal (id: string): Promise<void> {
-    await knex('meals')
-      .where(id)
+    const result = await knex('meals')
+      .where('id', id)
       .del()
       .then(() => {
         console.log('apagado com sucesso')
-        return undefined
+        return 'ok'
       })
       .catch((err: any) => {
         console.log(err)
         return undefined
       })
+    return result
   }
 
   async findMeal (name: string, email: string, data: string): Promise<Meal> {

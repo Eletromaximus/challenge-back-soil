@@ -26,9 +26,9 @@ export class CreateMealController {
     const { id } = req.body
 
     try {
-      await this.createMealCase.delete(id)
+      const result = await this.createMealCase.delete(id)
 
-      return res.status(201).send()
+      return res.status(200).send(result)
     } catch (err: any) {
       return res.status(400).json({
         message: err.message || 'Unexpected error'
