@@ -42,20 +42,19 @@ export class CreateMealCase {
 
   async listMeals (
     email: string,
-    advance: number = 0,
+    advance?: number,
     column?: string,
     direction?: string
   ) {
-    const verifyAdvance = advance >= 0
     const verifyDirection = direction === 'DESC' || 'ASC'
 
-    if (!verifyAdvance || !verifyDirection || !email) {
+    if (!verifyDirection || !email) {
       throw new Error('Bad Request')
     }
 
     const list = await this.useMeal.listMeal(email, advance, column, direction)
 
-    if (list) {
+    if (list.length <= 0) {
       throw new Error('List Fail')
     }
 

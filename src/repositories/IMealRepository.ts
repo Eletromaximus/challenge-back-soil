@@ -4,7 +4,8 @@ export interface IMealRepository {
   findId(id: string): Promise<Meal>
   findMeal(name: string, email: string, data:string):Promise<Meal>
   delMeal(id: string): Promise<void>
-  listMeal(email: string,
+  listMeal(
+    email: string,
     advance?: number,
     column?: string,
     direction?: string
