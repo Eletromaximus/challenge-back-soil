@@ -10,7 +10,9 @@ export class CreateMealCase {
   }
 
   async execute (mealData:ICreateMealDTO) {
-    const listMeal = mealData.name === 'café da manha' || 'almoço' || 'café da tarde' || 'janta' || 'ceia'
+    const itemList = ['café da manha', 'almoço', 'café da tarde', 'janta', 'ceia']
+
+    const listMeal = itemList.find(item => item === mealData.name)
 
     if (!listMeal || !mealData.email || !mealData.data) {
       throw new Error('Bad Request')

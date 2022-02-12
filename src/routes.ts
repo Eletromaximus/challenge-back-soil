@@ -12,7 +12,7 @@ router.post('/login', (request, response) => {
   return createUserController.login(request, response)
 })
 
-router.get('/meals', (request, response) => {
+router.post('/meals', (request, response) => {
   return createMealController.handle(request, response)
 })
 
