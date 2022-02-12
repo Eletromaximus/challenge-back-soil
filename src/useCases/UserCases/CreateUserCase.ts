@@ -21,10 +21,10 @@ export class CreateUserCase {
     return await this.usersRepository.save(user)
   }
 
-  async login (user: ICreateUserRequestDTO): Promise<ICreateUserRequestDTO[]> {
+  async login (user: ICreateUserRequestDTO): Promise<ICreateUserRequestDTO> {
     const userLogin = await this.usersRepository.login(user)
 
-    if (userLogin) {
+    if (!userLogin) {
       throw new Error('Login Error')
     }
 

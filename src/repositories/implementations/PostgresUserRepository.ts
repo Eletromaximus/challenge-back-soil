@@ -10,7 +10,6 @@ export class PostgresUsersRepository implements IUsersRepository {
       .from('users')
       .where('email', email)
       .then((data: User[]) => {
-        console.log('busca bem sucedida', data, data[0])
         return data[0]
       })
       .catch((err: any) => {
@@ -45,7 +44,6 @@ export class PostgresUsersRepository implements IUsersRepository {
         password: `${user.password}`
       })
       .then((data: User[]) => {
-        console.log('busca bem sucedida', data)
         return data[0]
       })
       .catch((err: any) => {

@@ -62,7 +62,7 @@ export class PostgresMealRepository implements IMealRepository {
       })
       .orderBy('data')
       .then((data: any) => {
-        console.log('refeição encontrada', data)
+        console.log('refeição encontrada')
         return data[0]
       })
       .catch((err: any) => {
@@ -87,7 +87,6 @@ export class PostgresMealRepository implements IMealRepository {
       .orderBy(column, direction)
       .offset(Math.floor(advance))
       .then((data: Meal[]) => {
-        console.log(data)
         return data
       })
       .catch((err: any) => {
