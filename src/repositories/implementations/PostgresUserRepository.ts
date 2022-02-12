@@ -1,4 +1,4 @@
-import { IUsersRepository, ILogin } from '../IUserRepository'
+import { IUsersRepository } from '../IUserRepository'
 import { User } from '../../entities/User'
 
 const knex = require('../../database')
@@ -31,25 +31,22 @@ export class PostgresUsersRepository implements IUsersRepository {
       })
   }
 
-  async login (user: User): Promise<ILogin> {
-    const login = await userDb
-      .select('name', 'email')
+  async login (user: User): Promise<User> {
+    return await userDb
+      .select()
       .from('users')
       .where({
         email: `${user.email}`,
         name: `${user.name}`,
         password: `${user.password}`
       })
-      .then((data: any) => {
+      .then((data: User[]) => {
         console.log('busca bem sucedida')
         return data[0]
       })
       .catch((err: any) => {
         console.log(err)
-
         return undefined
       })
-
-    return login
   }
 }

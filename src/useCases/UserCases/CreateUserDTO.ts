@@ -3,7 +3,3 @@ export interface ICreateUserRequestDTO {
   email: string,
   password: string
 }
-export interface ILoginUserDTO {
-  name: string,
-  email: string,
-}
