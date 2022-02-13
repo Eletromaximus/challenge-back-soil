@@ -10,7 +10,7 @@ export class CreateMealCase {
   }
 
   async execute (mealData:ICreateMealDTO) {
-    const itemList = ['café da manha', 'almoço', 'café da tarde', 'janta', 'ceia']
+    const itemList = ['café da manhã', 'almoço', 'café da tarde', 'janta', 'ceia']
 
     const listMeal = itemList.find(item => item === mealData.name)
 
