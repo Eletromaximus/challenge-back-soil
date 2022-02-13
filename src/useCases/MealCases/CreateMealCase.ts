@@ -37,7 +37,7 @@ export class CreateMealCase {
 
     if (!sameDate) {
       throw new Error('Meal is not exist')
-    }console.log(id)
+    }
 
     return await this.useMeal.delMeal(id)
   }

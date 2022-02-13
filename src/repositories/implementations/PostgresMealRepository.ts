@@ -25,7 +25,6 @@ export class PostgresMealRepository implements IMealRepository {
       .from('meals')
       .where('id', id)
       .then((data: Meal[]) => {
-        console.log('busca bem sucedida de Meal', data)
         return data[0]
       })
       .catch((err: any) => {
@@ -41,7 +40,6 @@ export class PostgresMealRepository implements IMealRepository {
       .where('id', id)
       .del()
       .then(() => {
-        console.log('apagado com sucesso')
         return 'ok'
       })
       .catch((err: any) => {
@@ -62,7 +60,6 @@ export class PostgresMealRepository implements IMealRepository {
       })
       .orderBy('data')
       .then((data: any) => {
-        console.log('refeição encontrada')
         return data[0]
       })
       .catch((err: any) => {

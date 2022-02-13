@@ -47,8 +47,6 @@ export class CreateMealController {
         direction
       )
 
-      console.log(listMeals)
-
       return res.status(201).send(listMeals)
     } catch (err: any) {
       return res.status(400).json({

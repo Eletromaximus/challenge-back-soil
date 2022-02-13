@@ -13,7 +13,7 @@ export class PostgresUsersRepository implements IUsersRepository {
         return data[0]
       })
       .catch((err: any) => {
-        console.log(err, 'seria aqui?')
+        console.log(err)
         return undefined
       })
 
@@ -24,7 +24,6 @@ export class PostgresUsersRepository implements IUsersRepository {
     const result = await knex('users')
       .insert(user)
       .then(() => {
-        console.log('sucesso ao inserir User')
         return 'ok'
       })
       .catch((error: any) => {

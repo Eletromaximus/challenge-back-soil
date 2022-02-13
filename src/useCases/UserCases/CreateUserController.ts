@@ -17,7 +17,6 @@ export class CreateUserController {
         email,
         password
       })
-      console.log(result)
       return res.status(201).send(result)
     } catch (err: any) {
       return res.status(400).json({

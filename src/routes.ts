@@ -16,7 +16,7 @@ router.post('/meals', (request, response) => {
   return createMealController.handle(request, response)
 })
 
-router.get('/listmeals', (request, response) => {
+router.post('/listmeals', (request, response) => {
   return createMealController.listOfMeals(request, response)
 })
 
