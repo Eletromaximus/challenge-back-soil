@@ -11,10 +11,10 @@ exports.up = function (knex) {
     table.text('data')
     table.text('carboidratos')
     table.text('proteinas')
-    table.text('vegetais')
+    table.text('verduras')
     table.float('gramsCarboidratos')
     table.float('gramsProteinas')
-    table.float('gramsVegetais')
+    table.float('gramsVerduras')
   })
 }
 

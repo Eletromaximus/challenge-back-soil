@@ -6,10 +6,10 @@ export class Meal {
   public data!: string
   public readonly id!: string
   public carboidratos!: string
-  public vegetais!: string
+  public verduras!: string
   public proteinas!: string
   public gramsProteinas!: number
-  public gramsVegetais!: number
+  public gramsVerduras!: number
   public gramsCarboidratos!: number
 
   constructor (props: Omit<Meal, 'id'>, id?: string) {

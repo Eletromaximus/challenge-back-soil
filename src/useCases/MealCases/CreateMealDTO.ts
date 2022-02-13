@@ -3,9 +3,9 @@ export interface ICreateMealDTO{
   name: string,
   data: string,
   carboidratos: string
-  vegetais: string
+  verduras: string
   proteinas: string
   gramsProteinas: number
-  gramsVegetais: number
+  gramsVerduras: number
   gramsCarboidratos: number
 }
