@@ -4,7 +4,7 @@ module.exports = {
   connection: {
     user: process.env.USER_NAME,
     database: process.env.DATABASE_URL || 'max',
-    password: '48273#Xz'
+    password: process.env.USER_PASSWORD '48273#Xz'
   },
   migrations: {
     tableName: 'knex_migrations',
