@@ -2,14 +2,10 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: {
-      user: process.env.USER_NAME,
-      database: process.env.DATABASE_URL || 'max',
-      password: process.env.USER_PASSWORD || '48273#Xz'
-    },
+    connection: {},
     migrations: {
       tableName: 'knex_migrations',
-      directory: {}
+      directory: `${__dirname}/src/database/migrations`
     },
     seeds: {
       directory: `${__dirname}/src/database/seeds`
