@@ -3,8 +3,9 @@ module.exports = {
   client: 'pg',
   connection: {
     database: 'd3mqkbj9lib09m' || 'max',
-    user: process.env.USER_NAME,
-    password: process.env.USER_PASSWORD || '48273#Xz'
+    user: 'dplqnvapxjylbr',
+    password: '6d3cc1ceb0ea408da56fb8088643bacac0b0588920d1fa04bcf91c8756e79abf',
+    port: 5432
   },
   migrations: {
     tableName: 'knex_migrations',
