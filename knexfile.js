@@ -2,8 +2,8 @@
 module.exports = {
   client: 'pg',
   connection: {
-    user: process.env.USER_NAME,
     database: process.env.DATABASE_URL || 'max',
+    user: process.env.USER_NAME,
     password: process.env.USER_PASSWORD || '48273#Xz'
   },
   migrations: {
