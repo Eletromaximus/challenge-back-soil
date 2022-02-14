@@ -44,14 +44,15 @@ export class CreateMealCase {
 
   async listMeals (
     email: string,
-    initialDate: string,
-    finalDate: string
+    initialDate: string = new Date().toString(),
+    finalDate: string = new Date().toString(),
+    offset: number = 0
   ) {
     const initial = new Date(initialDate)
     const final = new Date(finalDate)
     const verifyDate = initial <= final
 
-    if (!verifyDate || !email) {
+    if (!verifyDate || !email || offset < 0) {
       throw new Error('Bad Request')
     }
 

@@ -73,7 +73,8 @@ export class PostgresMealRepository implements IMealRepository {
   async listMeal (
     email: string,
     initialDate: string,
-    finalDate: string
+    finalDate: string,
+    offset: number = 0
   ): Promise<Meal[]> {
     const list = await knex('meals')
       .select()
@@ -81,6 +82,7 @@ export class PostgresMealRepository implements IMealRepository {
       .where('email', email)
       .whereBetween('data', [initialDate, finalDate])
       .limit(5)
+      .offset(offset)
       .then((data: Meal[]) => {
         return data
       })

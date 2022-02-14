@@ -7,6 +7,7 @@ export interface IMealRepository {
   listMeal(
     email: string,
     initialDate?: string,
-    finalDate?: string
+    finalDate?: string,
+    offset?: number
   ): Promise<Meal[]>
 }
