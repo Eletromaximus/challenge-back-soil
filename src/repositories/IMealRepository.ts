@@ -6,8 +6,7 @@ export interface IMealRepository {
   delMeal(id: string): Promise<void>
   listMeal(
     email: string,
-    advance?: number,
-    column?: string,
-    direction?: string
+    initialDate?: string,
+    finalDate?: string
   ): Promise<Meal[]>
 }

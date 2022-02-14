@@ -72,17 +72,15 @@ export class PostgresMealRepository implements IMealRepository {
 
   async listMeal (
     email: string,
-    advance: number = 0,
-    column: string = 'data',
-    direction: string = 'ASC'
+    initialDate: string,
+    finalDate: string
   ): Promise<Meal[]> {
     const list = await knex('meals')
       .select()
       .from('meals')
       .where('email', email)
+      .whereBetween('data', [initialDate, finalDate])
       .limit(5)
-      .orderBy(column, direction)
-      .offset(Math.floor(advance))
       .then((data: Meal[]) => {
         return data
       })

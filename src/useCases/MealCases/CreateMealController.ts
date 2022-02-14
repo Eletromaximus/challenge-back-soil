@@ -37,14 +37,13 @@ export class CreateMealController {
   }
 
   async listOfMeals (req: Request, res: Response) {
-    const { email, advance, column, direction } = req.body
+    const { email, initialDate, finalDate } = req.body
 
     try {
       const listMeals = await this.createMealCase.listMeals(
         email,
-        advance,
-        column,
-        direction
+        initialDate,
+        finalDate
       )
 
       return res.status(201).send(listMeals)
