@@ -8,9 +8,5 @@ module.exports = {
   },
   seeds: {
     directory: `${__dirname}/src/database/seeds`
-  },
-  pool: {
-    min: 2,
-    max: 10
   }
 }
