@@ -1,17 +1,12 @@
 /* eslint-disable node/no-path-concat */
 module.exports = {
   client: 'pg',
-  connection: {
-    host: '127.0.0.1',
-    database: process.env.DATABASE,
-    user: process.env.USER_NAME,
-    password: process.env.USER_PASSWORD || '48273#Xz',
-    port: 5432
-  },
+  connection: DB_URI,
   migrations: {
     tableName: 'knex_migrations',
     directory: `${__dirname}/src/database/migrations`
   },
+  ssl: true,
   seeds: {
     directory: `${__dirname}/src/database/seeds`
   },
