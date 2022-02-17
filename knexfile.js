@@ -8,5 +8,8 @@ module.exports = {
   },
   seeds: {
     directory: `${__dirname}/src/database/seeds`
+  },
+  ssl: {
+    rejectUnauthorized: false,
   }
 }
