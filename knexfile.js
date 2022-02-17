@@ -1,7 +1,7 @@
 /* eslint-disable node/no-path-concat */
 module.exports = {
   client: 'pg',
-  connection: DATABASE_URL,
+  connection: process.env.DATABASE_URL,
   migrations: {
     tableName: 'knex_migrations',
     directory: `${__dirname}/src/database/migrations`
