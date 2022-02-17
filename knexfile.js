@@ -2,18 +2,5 @@
 module.exports = {
   client: 'pg',
   connection: process.env.DATABASE_URL,
-  migrations: {
-    tableName: 'knex_migrations',
-    directory: `${__dirname}/src/database/migrations`
-  },
-
-  ssl: true,
-  seeds: {
-    directory: `${__dirname}/src/database/seeds`
-  },
-  
-  pool: {
-    min: 2,
-    max: 10
-  }
+  searchPath: ['knex', 'public']
 }
