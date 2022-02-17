@@ -1,13 +1,7 @@
 /* eslint-disable node/no-path-concat */
 module.exports = {
   client: 'pg',
-  connection: {
-    host: process.env.HOST,
-    database: process.env.DATABASE,
-    user: process.env.USER_NAME,
-    password: process.env.USER_PASSWORD || '48273#Xz',
-    port: 5432
-  },
+  connection: process.env.DATABASE_URL,
   migrations: {
     tableName: 'knex_migrations',
     directory: `${__dirname}/src/database/migrations`
