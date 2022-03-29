@@ -1,5 +1,6 @@
 /* eslint-disable node/no-path-concat */
 module.exports = {
+  client: 'pg',
   development: {
     client: 'pg',
     connection: {
