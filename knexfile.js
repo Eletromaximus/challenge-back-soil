@@ -6,7 +6,7 @@ module.exports = {
     user: process.env.USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
-    ssl: { rejectUnauthorized: false}
+    ssl: { rejectUnauthorized: true}
   },
   migrations: {
     tableName: 'knex_migrations',
